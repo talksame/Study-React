@@ -34,20 +34,32 @@ function Nav(props){
 </nav>
 }
 
-function Article(){
+function Article(props){
+  
   return       <article>
-  <h2>Welcome</h2>
+  <h2>{props.title}</h2>
   HELLO, WEB
 </article>
 }
 
 function App() { 
+  const mode = "READ";
   const topics = [
     {id:1, title: 'html', body:'html is ...'},
     {id:2, title: 'css', body:'css is ...'},
     {id:3, title: 'js', body:'js is ...'},
     
   ]
+  let content = null;
+
+  if ( mode === "WELCOME"){
+    content = <Article title = "WELCOME"></Article>
+    
+
+  } else if (mode === "READ"){
+    content = <Article title = "READ"></Article>
+
+  }
   return (
     <div>
       
@@ -56,8 +68,9 @@ function App() {
       }}></Header>
       <Nav topics = {topics} onChangeMode = { (id)=>{
         alert(id);
+        /* Toast Message */
       }}></Nav>
-      <Article></Article>
+      {content}
     </div>
   );
 }
